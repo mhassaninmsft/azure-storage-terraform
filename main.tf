@@ -44,13 +44,13 @@ resource "random_string" "name" {
 
 # Define resource group
 resource "azurerm_resource_group" "example" {
-  name     = "example-resource-group"
+  name     = "example-resource-group-${random_string.name.result}"
   location = "East US"
 }
 
 # Define storage account
 resource "azurerm_storage_account" "example" {
-  name                     = "mk2231dsas"
+  name                     = "mk2231dsas-${random_string.name.result}"
   resource_group_name      = azurerm_resource_group.example.name
   location                 = azurerm_resource_group.example.location
   account_tier             = "Standard"
