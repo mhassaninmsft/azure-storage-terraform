@@ -23,6 +23,8 @@ terraform {
 
 
 provider "azurerm" {
+  storage_use_azuread = true
+  # use_msi = true
   features {
     resource_group {
       prevent_deletion_if_contains_resources = false

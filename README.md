@@ -22,3 +22,19 @@ This repo has a small example required to reproduce a problem with the azure sto
 │   52: resource "azurerm_storage_account" "example" {
 │ 
 ```
+
+# The solution and workaround
+
+You have to set the flag `storage_use_azuread = true` on the `azurerm` resource provider like so
+
+```terraform
+provider "azurerm" {
+  storage_use_azuread = true
+  # use_msi = true
+  features {
+    resource_group {
+      prevent_deletion_if_contains_resources = false
+    }
+  }
+}
+```
